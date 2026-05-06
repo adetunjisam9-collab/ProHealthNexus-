@@ -1,24 +1,13 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 const sendEmail = async (to, subject, message) => {
   try {
-    await transporter.sendMail({
-      from: `"ProHealth Nexus" <${process.env.EMAIL_USER}>`,
+    await sgMail.send({
       to,
+      from: process.env.EMAIL_USER,
       subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -31,7 +20,7 @@ const sendEmail = async (to, subject, message) => {
     });
     console.log('Email sent to', to);
   } catch (err) {
-    console.error('Email error:', err);
+    console.error('Email error:', err.message);
   }
 };
 
