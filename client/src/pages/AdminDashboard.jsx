@@ -51,9 +51,9 @@ const [appointmentStatusFilter, setAppointmentStatusFilter] = useState('all');
   const fetchData = async () => {
   try {
     const [usersRes, appointmentsRes, auditRes] = await Promise.all([
-      axios.get('http://localhost:5000/api/auth/users', { headers }),
-      axios.get('http://localhost:5000/api/appointments', { headers }),
-      axios.get('http://localhost:5000/api/auth/audit-logs', { headers }),
+      axios.get('https://prohealthnexus-api.onrender.com/api/auth/users', { headers }),
+      axios.get('https://prohealthnexus-api.onrender.com/api/appointments', { headers }),
+      axios.get('https://prohealthnexus-api.onrender.com/api/auth/audit-logs', { headers }),
     ]);
     setUsers(usersRes.data);
     setAppointments(appointmentsRes.data);
@@ -431,7 +431,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 setAdminMessage('');
                 setAdminError('');
                 try {
-                  await axios.post('http://localhost:5000/api/auth/create-admin', adminForm, { headers });
+                  await axios.post('https://prohealthnexus-api.onrender.com/api/auth/create-admin', adminForm, { headers });
                   setAdminMessage(`Admin account created for ${adminForm.email}`);
                   setAdminForm({ full_name: '', email: '', password: '' });
                 } catch (err) {

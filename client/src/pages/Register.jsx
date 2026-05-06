@@ -44,7 +44,7 @@ const Register = () => {
   }
 
   try {
-    const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+    const res = await axios.post('https://prohealthnexus-api.onrender.com/api/auth/register', formData);
     setError('');
     // Show success message instead of redirecting
     setFormData({ full_name: '', email: '', password: '', role: 'patient' });

@@ -33,7 +33,7 @@ const Profile = () => {
 
   const fetchProfile = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/profile', { headers });
+      const res = await axios.get('https://prohealthnexus-api.onrender.com/api/auth/profile', { headers });
       setFormData(prev => ({ ...prev, full_name: res.data.full_name, email: res.data.email }));
     } catch (err) { console.error(err); }
   };
@@ -49,7 +49,7 @@ const Profile = () => {
     try {
       const payload = { full_name: formData.full_name, email: formData.email };
       if (formData.password) payload.password = formData.password;
-      const res = await axios.put('http://localhost:5000/api/auth/profile', payload, { headers });
+      const res = await axios.put('https://prohealthnexus-api.onrender.com/api/auth/profile', payload, { headers });
       login(res.data, token);
       setMessage('Profile updated successfully!');
       setFormData(prev => ({ ...prev, password: '', confirm_password: '' }));

@@ -93,7 +93,7 @@ await pool.query(
 );
 
 // Send verification email
-const verificationLink = `http://localhost:5000/api/auth/verify-email/${verificationToken}`;
+const verificationLink = `https://prohealthnexus-api.onrender.com/api/auth/verify-email/${verificationToken}`;
 await sendEmail(
   email,
   'Verify your ProHealth Nexus account',

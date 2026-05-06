@@ -35,14 +35,14 @@ const BookAppointment = () => {
 
   const fetchDoctors = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/doctors');
+      const res = await axios.get('https://prohealthnexus-api.onrender.com/api/auth/doctors');
       setDoctors(res.data);
     } catch (err) { console.error(err); }
   };
 
   const fetchDoctorAvailability = async (doctorId) => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/availability/${doctorId}`);
+    const res = await axios.get(`https://prohealthnexus-api.onrender.com/api/availability/${doctorId}`);
     setDoctorAvailability(res.data);
   } catch (err) { console.error(err); }
 };
@@ -76,7 +76,7 @@ const BookAppointment = () => {
   }
 
   try {
-    await axios.post('http://localhost:5000/api/appointments', formData, { headers });
+    await axios.post('https://prohealthnexus-api.onrender.com/api/appointments', formData, { headers });
       setMessage('Appointment booked successfully!');
       setFormData({ doctor_id: '', appointment_date: '', notes: '' });
       setTimeout(() => navigate('/patient'), 2000);

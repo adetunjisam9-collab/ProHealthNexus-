@@ -80,19 +80,19 @@ const [appointmentStatusFilter, setAppointmentStatusFilter] = useState('all');
 }, []);
   const fetchAppointments = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/appointments', { headers });
+      const res = await axios.get('https://prohealthnexus-api.onrender.com/api/appointments', { headers });
       setAppointments(res.data);
     } catch (err) { console.error(err); }
   };
 const fetchPatients = async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/auth/patients', { headers });
+    const res = await axios.get('https://prohealthnexus-api.onrender.com/api/auth/patients', { headers });
     setPatients(res.data);
   } catch (err) { console.error(err); }
 };
 const fetchAvailability = async () => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/availability/${user.id}`);
+    const res = await axios.get(`https://prohealthnexus-api.onrender.com/api/availability/${user.id}`);
     if (res.data.length > 0) {
       const updatedAvailability = { ...availability };
       res.data.forEach(slot => {
@@ -108,7 +108,7 @@ const fetchAvailability = async () => {
 };
 const fetchNotifications = async () => {
   try {
-    const res = await axios.get('http://localhost:5000/api/notifications', { headers });
+    const res = await axios.get('https://prohealthnexus-api.onrender.com/api/notifications', { headers });
     setNotifications(res.data);
   } catch (err) { console.error(err); }
 };
@@ -122,7 +122,7 @@ const updateAppointmentStatus = async (id, status) => {
   setAppointments(prev => prev.map(a => a.id === id ? { ...a, status } : a));
 
   try {
-    await axios.put(`http://localhost:5000/api/appointments/${id}`, { status }, { headers });
+    await axios.put(`https://prohealthnexus-api.onrender.com/api/appointments/${id}`, { status }, { headers });
   } catch (err) {
     console.error(err);
     // Revert if failed
@@ -134,7 +134,7 @@ const updateAppointmentStatus = async (id, status) => {
   const handleVitalSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/vitals', vitalForm, { headers });
+      await axios.post('https://prohealthnexus-api.onrender.com/api/vitals', vitalForm, { headers });
       setMessage('Vitals recorded successfully!');
       setError('');
       setVitalForm({ patient_id: '', heart_rate: '', systolic: '', diastolic: '', temperature: '', oxygen_level: '', weight: '' });
@@ -144,7 +144,7 @@ const updateAppointmentStatus = async (id, status) => {
   const handleLabSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:5000/api/labresults', labForm, { headers });
+      await axios.post('https://prohealthnexus-api.onrender.com/api/labresults', labForm, { headers });
       setMessage('Lab result added successfully!');
       setError('');
       setLabForm({ patient_id: '', test_name: '', result: '', unit: '', status: 'normal' });
@@ -229,7 +229,7 @@ onMouseLeave={e => { if (activeTab !== tab) e.target.style.color = darkMode ? '#
             await Promise.all(
               notifications
                 .filter(n => !n.is_read)
-                .map(n => axios.put(`http://localhost:5000/api/notifications/${n.id}`, {}, { headers }))
+                .map(n => axios.put(`https://prohealthnexus-api.onrender.com/api/notifications/${n.id}`, {}, { headers }))
             );
             setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
           } catch (err) { console.error(err); }
@@ -618,7 +618,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         setHistoryMessage('');
         setHistoryError('');
         try {
-  await axios.post('http://localhost:5000/api/medical-history', historyForm, { headers });
+  await axios.post('https://prohealthnexus-api.onrender.com/api/medical-history', historyForm, { headers });
   setHistoryMessage('Medical history added successfully!');
   setHistoryForm({ patient_id: '', appointment_id: '', symptoms: '', diagnosis: '', treatment: '', prescription: '', notes: '' });
   setTimeout(() => setHistoryMessage(''), 3000);
@@ -771,7 +771,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
             }));
 
           try {
-            const res = await axios.post('http://localhost:5000/api/availability', { availabilities }, { headers });
+            const res = await axios.post('https://prohealthnexus-api.onrender.com/api/availability', { availabilities }, { headers });
             setAvailabilityMessage(res.data.message);
             setTimeout(() => setAvailabilityMessage(''), 3000);
           } catch (err) {

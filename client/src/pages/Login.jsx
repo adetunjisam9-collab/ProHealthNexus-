@@ -20,7 +20,7 @@ const Login = () => {
   setLoading(true);
   setError('');
   try {
-    const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+    const res = await axios.post('https://prohealthnexus-api.onrender.com/api/auth/login', formData);
 if (res.data.token) {
   // No 2FA - direct login
   login(res.data.user, res.data.token);

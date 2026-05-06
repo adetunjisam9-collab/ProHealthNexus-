@@ -53,11 +53,11 @@ useEffect(() => {
   const fetchData = async () => {
     try {
       const [vitalsRes, appointmentsRes, labRes, notifRes, historyRes] = await Promise.all([
-  axios.get(`http://localhost:5000/api/vitals/${user.id}`, { headers }),
-  axios.get('http://localhost:5000/api/appointments', { headers }),
-  axios.get(`http://localhost:5000/api/labresults/${user.id}`, { headers }),
-  axios.get('http://localhost:5000/api/notifications', { headers }),
-  axios.get(`http://localhost:5000/api/medical-history/${user.id}`, { headers }),
+  axios.get(`https://prohealthnexus-api.onrender.com/api/vitals/${user.id}`, { headers }),
+  axios.get('https://prohealthnexus-api.onrender.com/api/appointments', { headers }),
+  axios.get(`https://prohealthnexus-api.onrender.com/api/labresults/${user.id}`, { headers }),
+  axios.get('https://prohealthnexus-api.onrender.com/api/notifications', { headers }),
+  axios.get(`https://prohealthnexus-api.onrender.com/api/medical-history/${user.id}`, { headers }),
 ]);
 setVitals(vitalsRes.data);
 setAppointments(appointmentsRes.data);
@@ -72,7 +72,7 @@ const cancelAppointment = async (id) => {
   if (cancellingId === id) return;
   setCancellingId(id);
   try {
-    await axios.put(`http://localhost:5000/api/appointments/cancel/${id}`, {}, { headers });
+    await axios.put(`https://prohealthnexus-api.onrender.com/api/appointments/cancel/${id}`, {}, { headers });
     setAppointments(prev => prev.map(a => a.id === id ? { ...a, status: 'cancelled' } : a));
   } catch (err) {
     console.error(err);
@@ -303,7 +303,7 @@ const cancelAppointment = async (id) => {
               await Promise.all(
                 notifications
                   .filter(n => !n.is_read)
-                  .map(n => axios.put(`http://localhost:5000/api/notifications/${n.id}`, {}, { headers }))
+                  .map(n => axios.put(`https://prohealthnexus-api.onrender.com/api/notifications/${n.id}`, {}, { headers }))
               );
               setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
             } catch (err) { console.error(err); }

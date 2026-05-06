@@ -57,7 +57,7 @@ const VerifyOTP = () => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/verify-otp', { userId, otp });
+      const res = await axios.post('https://prohealthnexus-api.onrender.com/api/auth/verify-otp', { userId, otp });
       login(res.data.user, res.data.token);
 
       if (res.data.user.role === 'patient') navigate('/patient');
