@@ -135,16 +135,6 @@ if (!user.rows[0].is_verified) {
   return res.status(400).json({ error: 'Please verify your email address before logging in. Check your inbox for the verification link.' });
 }
 
-// TEMP: Skip 2FA for doctor account during testing
-if (user.rows[0].id === 3) {
-  const token = jwt.sign(
-    { id: user.rows[0].id, role: user.rows[0].role },
-    process.env.JWT_SECRET,
-    { expiresIn: '7d' }
-  );
-  await auditLog(user.rows[0].id, 'LOGIN', `User ${user.rows[0].email} logged in`, req.ip);
-  return res.json({ token, user: { id: user.rows[0].id, full_name: user.rows[0].full_name, email: user.rows[0].email, role: user.rows[0].role } });
-}
     // Generate 6 digit OTP
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const otpExpiry = new Date(Date.now() + 3 * 60 * 1000); // 3 minutes
