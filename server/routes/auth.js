@@ -387,7 +387,7 @@ router.get('/verify-email/:token', async (req, res) => {
             <div style="font-size:48px; margin-bottom:1rem;">✅</div>
             <h2 style="color:#1e3a5f;">Email Verified!</h2>
             <p style="color:#6b7280;">Your ProHealth Nexus account has been verified successfully.</p>
-            <a href="http://localhost:3000/login" style="display:inline-block; margin-top:1rem; background:linear-gradient(135deg,#1e3a5f,#2563eb); color:white; padding:12px 24px; border-radius:10px; text-decoration:none; font-weight:bold;">
+            <a href="${process.env.FRONTEND_URL}/login" style="display:inline-block; margin-top:1rem; background:linear-gradient(135deg,#1e3a5f,#2563eb); color:white; padding:12px 24px; border-radius:10px; text-decoration:none; font-weight:bold;">
               Go to Login
             </a>
           </div>
