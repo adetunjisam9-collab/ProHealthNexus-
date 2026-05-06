@@ -1,13 +1,21 @@
-const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const transporter = nodemailer.createTransport({
+  host: 'smtp-relay.brevo.com',
+  port: 587,
+  secure: false,
+  auth: {
+    user: process.env.BREVO_USER,
+    pass: process.env.BREVO_PASS,
+  },
+});
 
 const sendEmail = async (to, subject, message) => {
   try {
-    await sgMail.send({
+    await transporter.sendMail({
+      from: `"ProHealth Nexus" <${process.env.BREVO_USER}>`,
       to,
-      from: process.env.EMAIL_USER,
       subject,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
