@@ -93,7 +93,7 @@ await pool.query(
 );
 
 // Send verification email
-const verificationLink = `https://prohealthnexus-api.onrender.com/api/auth/verify-email/${verificationToken}`;
+const verificationLink = `${process.env.BACKEND_URL}/api/auth/verify-email/${verificationToken}`;
 await sendEmail(
   email,
   'Verify your ProHealth Nexus account',
@@ -424,7 +424,7 @@ router.post('/forgot-password', async (req, res) => {
     );
 
     // Send reset email
-    const resetLink = `http://localhost:3000/reset-password/${resetToken}`;
+    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
     await sendEmail(
       email,
       'Reset Your ProHealth Nexus Password',
