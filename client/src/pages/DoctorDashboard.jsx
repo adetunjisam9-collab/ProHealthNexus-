@@ -10,16 +10,18 @@ const btnBase = {
   transition: 'all 0.2s', fontFamily: 'inherit'
 };
 
-const inputStyle = {
-  width: '100%', padding: '12px 16px', borderRadius: '12px',
-  border: '1.5px solid #e5e7eb', fontSize: '14px', outline: 'none',
-  transition: 'border-color 0.2s', boxSizing: 'border-box',
-  fontFamily: 'inherit'
-};
 
 const DoctorDashboard = () => {
   const { user, token, logout } = useAuth();
   const { darkMode, toggleDarkMode } = useTheme();
+  const inputStyle = {
+  width: '100%', padding: '12px 16px', borderRadius: '12px',
+  border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`, fontSize: '14px', outline: 'none',
+  transition: 'border-color 0.2s', boxSizing: 'border-box',
+  fontFamily: 'inherit', background: darkMode ? '#0f172a' : 'white',
+  color: darkMode ? '#e2e8f0' : '#374151'
+};
+
   const card = {
   background: darkMode ? '#1e293b' : 'white',
   borderRadius: '16px',
@@ -633,7 +635,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
           <select
             value={historyForm.patient_id}
             onChange={e => setHistoryForm({ ...historyForm, patient_id: e.target.value })}
-            style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`, fontSize: '14px', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit', background: darkMode ? '#0f172a' : 'white' }}
+           style={{ width: '100%', padding: '12px 16px', borderRadius: '12px', border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`, fontSize: '14px', outline: 'none', boxSizing: 'border-box', fontFamily: 'inherit', background: darkMode ? '#0f172a' : 'white', color: darkMode ? '#e2e8f0' : '#374151' }}
             onFocus={e => e.target.style.borderColor = '#2563eb'}
             onBlur={e => e.target.style.borderColor = '#e5e7eb'}
             required
