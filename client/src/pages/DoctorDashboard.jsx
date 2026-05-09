@@ -177,15 +177,15 @@ const [historyError, setHistoryError] = useState('');
     <div style={{ minHeight: '100vh', background: darkMode ? '#0f172a' : '#f8faff', transition: 'background 0.3s' }}>
       {/* Navbar */}
 <nav style={{
-  background: darkMode ? '#1e293b' : 'white', padding: '0 2rem',
+  background: darkMode ? '#1e293b' : 'white', padding: '0 1rem',
 boxShadow: darkMode ? '0 2px 20px rgba(0,0,0,0.3)' : '0 2px 20px rgba(0,0,0,0.08)',
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  height: '64px', position: 'sticky', top: 0, zIndex: 100
+display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', gap: '8px'
 }}>
   <Logo size="md" />
 
   {/* Center Nav */}
-<div style={{ display: 'flex', alignItems: 'center', gap: '2px', overflowX: 'auto', scrollbarWidth: 'none' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: '4px', overflowX: 'auto', scrollbarWidth: 'none', maxWidth: '100%' }}>
     {['appointments', 'record vitals', 'add lab result', 'medical history', 'availability'].map(tab => (  
       <button
         key={tab}
@@ -352,7 +352,7 @@ color: 'white', fontWeight: '700', fontSize: '13px'
  </div>
   </div>
 </nav>
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem 1.5rem' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem 1rem' }}>
         {/* Welcome Banner */}
         <div style={{
           background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',

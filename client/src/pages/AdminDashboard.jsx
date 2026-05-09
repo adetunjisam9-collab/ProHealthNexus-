@@ -88,15 +88,15 @@ const [appointmentStatusFilter, setAppointmentStatusFilter] = useState('all');
     <div style={{ minHeight: '100vh', background: darkMode ? '#0f172a' : '#f8faff', transition: 'background 0.3s' }}>
       {/* Navbar */}
       <nav style={{
-  background: darkMode ? '#1e293b' : 'white', padding: '0 2rem',
+  background: darkMode ? '#1e293b' : 'white', padding: '0 1rem',
 boxShadow: darkMode ? '0 2px 20px rgba(0,0,0,0.3)' : '0 2px 20px rgba(0,0,0,0.08)',
-  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-  height: '64px', position: 'sticky', top: 0, zIndex: 100
+display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', gap: '8px'
 }}>
   <Logo size="md" />
 
   {/* Center Nav */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: '4px', overflowX: 'auto', scrollbarWidth: 'none', maxWidth: '100%' }}>
     {['users', 'appointments', 'audit logs', 'create admin'].map(tab => ( 
       <button
         key={tab}
@@ -196,7 +196,7 @@ color: 'white', fontWeight: '700', fontSize: '13px'
   </div>
 </nav>
 
-      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '2rem 1.5rem' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem 1rem' }}>
         {/* Welcome Banner */}
         <div style={{
           background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',
@@ -212,7 +212,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         </div>
 
         {/* Stat Cards */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1rem', marginBottom: '2rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
           {statCards.map((stat, i) => (
             <div key={i} style={{ ...card, borderTop: `4px solid ${stat.color}`, display: 'flex', alignItems: 'center', gap: '12px' }}>
               <div style={{ width: '44px', height: '44px', borderRadius: '12px', background: stat.bg, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

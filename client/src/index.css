@@ -20,3 +20,40 @@
 .dark {
   color-scheme: dark;
 }
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Navbar */
+  nav {
+    padding: 0 1rem !important;
+    height: auto !important;
+    flex-wrap: wrap !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+  }
+
+  /* Hide center nav tabs on mobile */
+  nav > div:nth-child(2) {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: none;
+  }
+
+  /* Grids become single column */
+  .grid-cols-2, .grid-cols-4 {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Tables scroll horizontally */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  /* Cards full width */
+  .max-w-6xl {
+    padding: 1rem !important;
+  }
+}

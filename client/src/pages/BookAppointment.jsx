@@ -107,7 +107,7 @@ const BookAppointment = () => {
         </button>
       </nav>
 
-      <div style={{ maxWidth: '560px', margin: '0 auto', padding: '2rem 1.5rem' }}>
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem 1rem' }}>
         {/* Header */}
         <div style={{
          background: 'linear-gradient(135deg, #1e3a5f, #2563eb)',
