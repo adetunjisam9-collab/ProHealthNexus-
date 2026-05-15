@@ -43,10 +43,20 @@ useEffect(() => {
     if (notifRef.current && !notifRef.current.contains(e.target)) {
       setShowNotifications(false);
     }
+    if (avatarRef.current && !avatarRef.current.contains(e.target)) {
+      setShowAvatarMenu(false);
+    }
+    if (showMobileMenu && !e.target.closest('.mobile-menu') && !e.target.closest('.mobile-only')) {
+      setShowMobileMenu(false);
+    }
   };
   document.addEventListener('mousedown', handleClickOutside);
-  return () => document.removeEventListener('mousedown', handleClickOutside);
-}, []);
+  document.addEventListener('touchstart', handleClickOutside);
+  return () => {
+    document.removeEventListener('mousedown', handleClickOutside);
+    document.removeEventListener('touchstart', handleClickOutside);
+  };
+}, [showMobileMenu]);
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => { fetchData(); }, []);
