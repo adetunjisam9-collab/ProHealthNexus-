@@ -514,10 +514,11 @@ const cancelAppointment = async (id) => {
 
         {/* Tabs */}
         <div style={{
-            display: 'inline-flex', background: darkMode ? '#1e293b' : '#f1f5f9', borderRadius: '12px',
-            padding: '4px', marginBottom: '1.5rem', gap: '2px'
-         }}>
-        {['overview', 'appointments', 'lab results'].map(tab => (
+  display: 'flex', background: darkMode ? '#1e293b' : '#f1f5f9', borderRadius: '12px',
+  padding: '4px', marginBottom: '1.5rem', gap: '2px',
+  overflowX: 'auto', scrollbarWidth: 'none'
+}}>
+  {['overview', 'appointments', 'lab results', 'medical history'].map(tab => (
          <button
           key={tab}
             onClick={() => setActiveTab(tab)}
