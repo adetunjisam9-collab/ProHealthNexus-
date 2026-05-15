@@ -289,7 +289,7 @@ const cancelAppointment = async (id) => {
   </div>
 
   {/* Right Side */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
     {/* Dark Mode Toggle */}
     <button
       onClick={toggleDarkMode}
@@ -431,7 +431,7 @@ const cancelAppointment = async (id) => {
     <button
       onClick={() => setShowMobileMenu(!showMobileMenu)}
       className="mobile-only"
-      style={{ ...btnBase, background: 'none', border: 'none', width: '38px', height: '38px', borderRadius: '10px', fontSize: '18px', display: 'none', alignItems: 'center', justifyContent: 'center' }}
+      style={{ ...btnBase, background: 'none', border: 'none', width: '38px', height: '38px', borderRadius: '10px', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
     >
       <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'}`} style={{ color: darkMode ? '#e2e8f0' : '#374151' }}></i>
     </button>
