@@ -332,13 +332,15 @@ const cancelAppointment = async (id) => {
 
       {/* Notifications Dropdown */}
       {showNotifications && (
-        <div style={{
-          position: 'fixed', right: '1rem', top: '70px', width: 'min(300px, calc(100vw - 2rem))',
-          background: darkMode ? '#1e293b' : 'white', borderRadius: '16px',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.15)', zIndex: 200,
-          border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden',
-          maxWidth: 'calc(100vw - 2rem)'
-        }}>
+  <>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 199 }} onClick={() => setShowNotifications(false)} />
+    <div style={{
+      position: 'fixed', right: '1rem', top: '70px', width: 'min(300px, calc(100vw - 2rem))',
+      background: darkMode ? '#1e293b' : 'white', borderRadius: '16px',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.15)', zIndex: 200,
+      border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden',
+      maxWidth: 'calc(100vw - 2rem)'
+    }}>
           <div style={{ padding: '16px', borderBottom: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, fontWeight: '600', color: darkMode ? '#e2e8f0' : '#1e3a5f', fontSize: '14px' }}>
             <i className="fa-solid fa-bell" style={{ marginRight: '8px', color: '#2563eb' }}></i>
             Notifications
@@ -359,7 +361,8 @@ const cancelAppointment = async (id) => {
             </div>
           )}
         </div>
-      )}
+      </>
+    )}
     </div>
 
     {/* Avatar Dropdown */}
