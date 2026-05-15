@@ -35,6 +35,7 @@ const PatientDashboard = () => {
   const notifRef = useRef(null);
   const [showAvatarMenu, setShowAvatarMenu] = useState(false);
   const avatarRef = useRef(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [appointmentFilter, setAppointmentFilter] = useState('all');
 
 useEffect(() => {
@@ -248,29 +249,29 @@ const cancelAppointment = async (id) => {
     <div style={{ minHeight: '100vh', background: darkMode ? '#0f172a' : '#f8faff', transition: 'background 0.3s' }}>
      {/* Navbar */}
 <nav style={{
-  background: darkMode ? '#1e293b' : 'white', padding: '0 1rem',
-boxShadow: darkMode ? '0 2px 20px rgba(0,0,0,0.3)' : '0 2px 20px rgba(0,0,0,0.08)',
-display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', gap: '8px'
+  background: darkMode ? '#1e293b' : 'white', padding: '0 1.5rem',
+  boxShadow: darkMode ? '0 2px 20px rgba(0,0,0,0.3)' : '0 2px 20px rgba(0,0,0,0.08)',
+  display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+  height: '64px', position: 'sticky', top: 0, zIndex: 100
 }}>
   <Logo size="md" />
 
-  {/* Center Nav */}
-<div style={{ display: 'flex', alignItems: 'center', gap: '4px', overflowX: 'auto', scrollbarWidth: 'none', maxWidth: '100%' }}>
+  {/* Desktop Center Nav */}
+  <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }} className="desktop-nav">
     {['overview', 'appointments', 'lab results', 'medical history'].map(tab => (
       <button
         key={tab}
         onClick={() => setActiveTab(tab)}
         style={{
-          ...btnBase, padding: '8px 16px', borderRadius: '8px',
+          ...btnBase, padding: '8px 14px',
           fontSize: '13px', textTransform: 'capitalize', background: 'none',
-          color: activeTab === tab ? '#2563eb' : '#6b7280',
+          color: activeTab === tab ? '#2563eb' : (darkMode ? '#94a3b8' : '#6b7280'),
           fontWeight: activeTab === tab ? '600' : '500',
           borderBottom: activeTab === tab ? '2px solid #2563eb' : '2px solid transparent',
           borderRadius: '0',
         }}
-        onMouseEnter={e => { if (activeTab !== tab) e.target.style.color = '#374151'; }}
-        onMouseLeave={e => { if (activeTab !== tab) e.target.style.color = '#6b7280'; }}
+        onMouseEnter={e => { if (activeTab !== tab) e.target.style.color = darkMode ? '#e2e8f0' : '#374151'; }}
+        onMouseLeave={e => { if (activeTab !== tab) e.target.style.color = darkMode ? '#94a3b8' : '#6b7280'; }}
       >
         {tab}
       </button>
@@ -278,20 +279,16 @@ minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', ga
   </div>
 
   {/* Right Side */}
-  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
     {/* Dark Mode Toggle */}
-<button
-  onClick={toggleDarkMode}
-  style={{
-    ...btnBase, background: 'none', border: 'none', width: '38px', height: '38px',
-    borderRadius: '10px', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center'
-  }}
-  onMouseEnter={e => { e.currentTarget.style.background = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'; }}
-  onMouseLeave={e => { e.currentTarget.style.background = 'none'; }}
-  title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
->
-  <i className={`fa-solid ${darkMode ? 'fa-sun' : 'fa-moon'}`} style={{ color: darkMode ? '#fbbf24' : '#374151', fontSize: '16px' }}></i>
-</button>
+    <button
+      onClick={toggleDarkMode}
+      style={{ ...btnBase, background: 'none', border: 'none', width: '38px', height: '38px', borderRadius: '10px', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      onMouseEnter={e => { e.currentTarget.style.background = darkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.05)'; }}
+      onMouseLeave={e => { e.currentTarget.style.background = 'none'; }}
+    >
+      <i className={`fa-solid ${darkMode ? 'fa-sun' : 'fa-moon'}`} style={{ color: darkMode ? '#fbbf24' : '#374151', fontSize: '16px' }}></i>
+    </button>
 
     {/* Bell */}
     <div ref={notifRef} style={{ position: 'relative' }}>
@@ -301,8 +298,7 @@ minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', ga
           if (!showNotifications && unreadCount > 0) {
             try {
               await Promise.all(
-                notifications
-                  .filter(n => !n.is_read)
+                notifications.filter(n => !n.is_read)
                   .map(n => axios.put(`https://prohealthnexus-api.onrender.com/api/notifications/${n.id}`, {}, { headers }))
               );
               setNotifications(prev => prev.map(n => ({ ...n, is_read: true })));
@@ -313,7 +309,7 @@ minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', ga
         onMouseEnter={e => { e.target.style.background = 'rgba(0,0,0,0.05)'; }}
         onMouseLeave={e => { e.target.style.background = 'none'; }}
       >
-        <i className="fa-solid fa-bell" style={{ fontSize: '16px', color: '#374151' }}></i>
+        <i className="fa-solid fa-bell" style={{ fontSize: '16px', color: darkMode ? '#94a3b8' : '#374151' }}></i>
         {unreadCount > 0 && (
           <span style={{
             position: 'absolute', top: '4px', right: '4px',
@@ -327,27 +323,26 @@ minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', ga
       {/* Notifications Dropdown */}
       {showNotifications && (
         <div style={{
-          position: 'absolute', right: 0, top: '48px', width: '320px',
-          background: 'white', borderRadius: '16px',
+          position: 'absolute', right: 0, top: '48px', width: '300px',
+          background: darkMode ? '#1e293b' : 'white', borderRadius: '16px',
           boxShadow: '0 20px 60px rgba(0,0,0,0.15)', zIndex: 200,
-          border: '1px solid #f3f4f6', overflow: 'hidden'
+          border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden',
+          maxWidth: 'calc(100vw - 2rem)'
         }}>
-          <div style={{ padding: '16px', borderBottom: '1px solid #f3f4f6', fontWeight: '600', color: '#1e3a5f', fontSize: '14px' }}>
+          <div style={{ padding: '16px', borderBottom: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, fontWeight: '600', color: darkMode ? '#e2e8f0' : '#1e3a5f', fontSize: '14px' }}>
             <i className="fa-solid fa-bell" style={{ marginRight: '8px', color: '#2563eb' }}></i>
             Notifications
           </div>
           {notifications.length === 0 ? (
-            <div style={{ padding: '24px', textAlign: 'center', color: '#9ca3af', fontSize: '14px' }}>
-              No notifications yet
-            </div>
+            <div style={{ padding: '24px', textAlign: 'center', color: '#9ca3af', fontSize: '14px' }}>No notifications yet</div>
           ) : (
             <div style={{ maxHeight: '280px', overflowY: 'auto' }}>
               {notifications.map(n => (
                 <div key={n.id} style={{
-                  padding: '14px 16px', borderBottom: '1px solid #f9fafb',
-                  background: n.is_read ? 'white' : '#eff6ff'
+                  padding: '14px 16px', borderBottom: `1px solid ${darkMode ? '#334155' : '#f9fafb'}`,
+                  background: n.is_read ? (darkMode ? '#1e293b' : 'white') : (darkMode ? '#1e3a5f' : '#eff6ff')
                 }}>
-                  <p style={{ margin: '0 0 4px', fontSize: '13px', color: '#374151' }}>{n.message}</p>
+                  <p style={{ margin: '0 0 4px', fontSize: '13px', color: darkMode ? '#e2e8f0' : '#374151' }}>{n.message}</p>
                   <p style={{ margin: 0, fontSize: '11px', color: '#9ca3af' }}>{new Date(n.created_at).toLocaleString()}</p>
                 </div>
               ))}
@@ -361,60 +356,51 @@ minHeight: '64px', position: 'sticky', top: 0, zIndex: 100, flexWrap: 'wrap', ga
     <div style={{ position: 'relative' }} ref={avatarRef}>
       <button
         onClick={() => setShowAvatarMenu(!showAvatarMenu)}
-        style={{
-          ...btnBase, display: 'flex', alignItems: 'center', gap: '8px',
-          background: 'none', padding: '6px 10px', borderRadius: '10px'
-        }}
+        style={{ ...btnBase, display: 'flex', alignItems: 'center', gap: '6px', background: 'none', padding: '6px 8px', borderRadius: '10px' }}
         onMouseEnter={e => e.currentTarget.style.background = 'rgba(0,0,0,0.04)'}
         onMouseLeave={e => e.currentTarget.style.background = 'none'}
       >
         <div style={{
-          width: '34px', height: '34px', borderRadius: '10px',
-          background: '#1e3a5f',
-display: 'flex', alignItems: 'center', justifyContent: 'center',
-color: 'white', fontWeight: '700', fontSize: '13px'
+          width: '34px', height: '34px', borderRadius: '10px', background: '#1e3a5f',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          color: 'white', fontWeight: '700', fontSize: '13px', flexShrink: 0
         }}>
           {user.full_name.charAt(0).toUpperCase()}
         </div>
-        <div style={{ textAlign: 'left' }}>
-          <div style={{ fontSize: '13px', fontWeight: '600', color: '#1e3a5f' }}>{user.full_name.split(' ')[0]}</div>
-          <div style={{ fontSize: '11px', color: '#9ca3af', textTransform: 'capitalize' }}>{user.role}</div>
-        </div>
-        <i className="fa-solid fa-chevron-down" style={{ fontSize: '11px', color: '#9ca3af' }}></i>
+        <i className="fa-solid fa-chevron-down" style={{ fontSize: '11px', color: '#9ca3af' }} className="desktop-only"></i>
       </button>
 
-      {/* Avatar Dropdown Menu */}
       {showAvatarMenu && (
         <div style={{
           position: 'absolute', right: 0, top: '52px', width: '200px',
-          background: 'white', borderRadius: '14px',
+          background: darkMode ? '#1e293b' : 'white', borderRadius: '14px',
           boxShadow: '0 20px 60px rgba(0,0,0,0.12)', zIndex: 200,
-          border: '1px solid #f3f4f6', overflow: 'hidden'
+          border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden'
         }}>
-          <div style={{ padding: '12px 16px', borderBottom: '1px solid #f3f4f6' }}>
-            <div style={{ fontSize: '13px', fontWeight: '600', color: '#1e3a5f' }}>{user.full_name}</div>
+          <div style={{ padding: '12px 16px', borderBottom: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}` }}>
+            <div style={{ fontSize: '13px', fontWeight: '600', color: darkMode ? '#e2e8f0' : '#1e3a5f' }}>{user.full_name}</div>
             <div style={{ fontSize: '11px', color: '#9ca3af', textTransform: 'capitalize' }}>{user.role}</div>
           </div>
           {[
-            { icon: 'fa-user', label: 'My Profile', action: () => navigate('/profile') },
-            { icon: 'fa-calendar-check', label: 'Book Appointment', action: () => navigate('/book-appointment') },
+            { icon: 'fa-user', label: 'My Profile', action: () => { navigate('/profile'); setShowAvatarMenu(false); } },
+            { icon: 'fa-calendar-plus', label: 'Book Appointment', action: () => { navigate('/book-appointment'); setShowAvatarMenu(false); } },
           ].map((item, i) => (
             <button
               key={i}
               onClick={item.action}
-              style={{ ...btnBase, width: '100%', padding: '12px 16px', background: 'none', color: '#374151', fontSize: '13px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#f8faff'}
+              style={{ ...btnBase, width: '100%', padding: '12px 16px', background: 'none', color: darkMode ? '#e2e8f0' : '#374151', fontSize: '13px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500' }}
+              onMouseEnter={e => e.currentTarget.style.background = darkMode ? '#334155' : '#f8faff'}
               onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
               <i className={`fa-solid ${item.icon}`} style={{ color: '#2563eb', width: '16px' }}></i>
               {item.label}
             </button>
           ))}
-          <div style={{ borderTop: '1px solid #f3f4f6' }}>
+          <div style={{ borderTop: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}` }}>
             <button
               onClick={logout}
               style={{ ...btnBase, width: '100%', padding: '12px 16px', background: 'none', color: '#dc2626', fontSize: '13px', textAlign: 'left', display: 'flex', alignItems: 'center', gap: '10px', fontWeight: '500' }}
-              onMouseEnter={e => e.currentTarget.style.background = '#fef2f2'}
+              onMouseEnter={e => e.currentTarget.style.background = darkMode ? '#2d1b1b' : '#fef2f2'}
               onMouseLeave={e => e.currentTarget.style.background = 'none'}
             >
               <i className="fa-solid fa-right-from-bracket" style={{ width: '16px' }}></i>
@@ -424,8 +410,44 @@ color: 'white', fontWeight: '700', fontSize: '13px'
         </div>
       )}
     </div>
+
+    {/* Hamburger Menu Button - Mobile Only */}
+    <button
+      onClick={() => setShowMobileMenu(!showMobileMenu)}
+      className="mobile-only"
+      style={{ ...btnBase, background: 'none', border: 'none', width: '38px', height: '38px', borderRadius: '10px', fontSize: '18px', display: 'none', alignItems: 'center', justifyContent: 'center' }}
+    >
+      <i className={`fa-solid ${showMobileMenu ? 'fa-xmark' : 'fa-bars'}`} style={{ color: darkMode ? '#e2e8f0' : '#374151' }}></i>
+    </button>
   </div>
 </nav>
+
+{/* Mobile Tab Menu */}
+{showMobileMenu && (
+  <div style={{
+    background: darkMode ? '#1e293b' : 'white',
+    borderBottom: `1px solid ${darkMode ? '#334155' : '#e5e7eb'}`,
+    padding: '8px 1rem', display: 'flex', flexDirection: 'column', gap: '4px',
+    position: 'sticky', top: '64px', zIndex: 99
+  }} className="mobile-menu">
+    {['overview', 'appointments', 'lab results', 'medical history'].map(tab => (
+      <button
+        key={tab}
+        onClick={() => { setActiveTab(tab); setShowMobileMenu(false); }}
+        style={{
+          ...btnBase, padding: '12px 16px', borderRadius: '10px',
+          fontSize: '14px', textTransform: 'capitalize', textAlign: 'left',
+          background: activeTab === tab ? (darkMode ? '#334155' : '#eff6ff') : 'none',
+          color: activeTab === tab ? '#2563eb' : (darkMode ? '#94a3b8' : '#6b7280'),
+          fontWeight: activeTab === tab ? '600' : '500',
+        }}
+      >
+        <i className={`fa-solid ${tab === 'overview' ? 'fa-house-medical' : tab === 'appointments' ? 'fa-calendar-check' : tab === 'lab results' ? 'fa-flask' : 'fa-file-medical'}`} style={{ marginRight: '10px', color: activeTab === tab ? '#2563eb' : '#9ca3af' }}></i>
+        {tab}
+      </button>
+    ))}
+  </div>
+)}
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '1.5rem 1rem' }}>
         {/* Welcome Banner */}
