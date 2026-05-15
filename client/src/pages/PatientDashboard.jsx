@@ -381,12 +381,14 @@ const cancelAppointment = async (id) => {
       </button>
 
       {showAvatarMenu && (
-        <div style={{
-          position: 'fixed', right: '1rem', top: '70px', width: 'min(200px, calc(100vw - 2rem))',
-          background: darkMode ? '#1e293b' : 'white', borderRadius: '14px',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.12)', zIndex: 200,
-          border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden'
-        }}>
+  <>
+    <div style={{ position: 'fixed', inset: 0, zIndex: 199 }} onClick={() => setShowAvatarMenu(false)} />
+    <div style={{
+      position: 'fixed', right: '1rem', top: '70px', width: 'min(200px, calc(100vw - 2rem))',
+      background: darkMode ? '#1e293b' : 'white', borderRadius: '14px',
+      boxShadow: '0 20px 60px rgba(0,0,0,0.12)', zIndex: 200,
+      border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden'
+    }}>
           <div style={{ padding: '12px 16px', borderBottom: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}` }}>
             <div style={{ fontSize: '13px', fontWeight: '600', color: darkMode ? '#e2e8f0' : '#1e3a5f' }}>{user.full_name}</div>
             <div style={{ fontSize: '11px', color: '#9ca3af', textTransform: 'capitalize' }}>{user.role}</div>
@@ -418,7 +420,8 @@ const cancelAppointment = async (id) => {
             </button>
           </div>
         </div>
-      )}
+      </>
+    )}
     </div>
 
     {/* Hamburger Menu Button - Mobile Only */}
