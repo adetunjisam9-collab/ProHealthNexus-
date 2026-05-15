@@ -323,7 +323,7 @@ const cancelAppointment = async (id) => {
       {/* Notifications Dropdown */}
       {showNotifications && (
         <div style={{
-          position: 'absolute', right: 0, top: '48px', width: '300px',
+          position: 'fixed', right: '1rem', top: '70px', width: 'min(300px, calc(100vw - 2rem))',
           background: darkMode ? '#1e293b' : 'white', borderRadius: '16px',
           boxShadow: '0 20px 60px rgba(0,0,0,0.15)', zIndex: 200,
           border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden',
@@ -372,7 +372,7 @@ const cancelAppointment = async (id) => {
 
       {showAvatarMenu && (
         <div style={{
-          position: 'absolute', right: 0, top: '52px', width: '200px',
+          position: 'fixed', right: '1rem', top: '70px', width: 'min(200px, calc(100vw - 2rem))',
           background: darkMode ? '#1e293b' : 'white', borderRadius: '14px',
           boxShadow: '0 20px 60px rgba(0,0,0,0.12)', zIndex: 200,
           border: `1px solid ${darkMode ? '#334155' : '#f3f4f6'}`, overflow: 'hidden'
