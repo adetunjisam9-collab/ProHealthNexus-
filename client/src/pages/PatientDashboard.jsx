@@ -513,7 +513,7 @@ const cancelAppointment = async (id) => {
 </div>
 
         {/* Tabs */}
-        <div style={{
+        <div className="desktop-nav" style={{
   display: 'flex', background: darkMode ? '#1e293b' : '#f1f5f9', borderRadius: '12px',
   padding: '4px', marginBottom: '1.5rem', gap: '2px',
   overflowX: 'auto', scrollbarWidth: 'none'
