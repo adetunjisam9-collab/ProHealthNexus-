@@ -20,8 +20,7 @@
 .dark {
   color-scheme: dark;
 }
- /* Mobile Responsiveness */
-@media (max-width: 768px) {
+ @media (max-width: 768px) {
   .desktop-nav {
     display: none !important;
   }
@@ -34,6 +33,18 @@
     display: block;
     overflow-x: auto;
     white-space: nowrap;
+  }
+
+  /* Safe area padding for phone notch/status bar */
+  nav {
+    padding-top: max(12px, env(safe-area-inset-top)) !important;
+    padding-left: max(1rem, env(safe-area-inset-left)) !important;
+    padding-right: max(1rem, env(safe-area-inset-right)) !important;
+  }
+
+  /* Hide logo tagline on mobile */
+  .logo-tagline {
+    display: none;
   }
 }
 
