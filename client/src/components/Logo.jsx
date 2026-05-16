@@ -22,7 +22,7 @@ const Logo = ({ size = 'md' }) => {
           <span style={{ color: '#1e3a5f' }}>ProHealth </span>
           <span style={{ color: '#2563eb' }}>Nexus</span>
         </div>
-        <div style={{ fontSize: s.tag, color: '#9ca3af', letterSpacing: '1.5px', marginTop: '1px' }}>
+        <div className="logo-tagline" style={{ fontSize: s.tag, color: '#9ca3af', letterSpacing: '1.5px', marginTop: '1px' }}>
           YOUR HEALTH, OUR PRIORITY
         </div>
       </div>
