@@ -418,7 +418,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
   <div className="fade-in">
            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', gap: '8px', flexWrap: 'wrap' }}>
   <h3 style={{ color: darkMode ? '#e2e8f0' : '#1e3a5f', fontWeight: '700', fontSize: '16px', margin: 0 }}>My Appointments</h3>
-  <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
+  <div style={{ display: 'flex', gap: '8px', marginLeft: 'auto' }}>
     <div style={{ position: 'relative' }}>
       <i className="fa-solid fa-search" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af', fontSize: '13px' }}></i>
       <input
