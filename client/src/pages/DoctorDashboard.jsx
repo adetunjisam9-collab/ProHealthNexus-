@@ -750,7 +750,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
             background: availability[day].enabled ? '#f8faff' : 'white',
             transition: 'all 0.2s'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '8px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                 <input
                   type="checkbox"
@@ -764,10 +764,10 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
                 <span style={{ fontWeight: '600', color: '#1e3a5f', fontSize: '14px' }}>{day}</span>
               </div>
               {availability[day].enabled && (
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <input
-                    type="time"
-                    value={availability[day].start}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '4px', flexWrap: 'wrap' }}>
+  <input
+    type="time"
+    value={availability[day].start}
                     onChange={e => setAvailability(prev => ({
                       ...prev,
                       [day]: { ...prev[day], start: e.target.value }
