@@ -455,13 +455,13 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
 }).map(appt => {
                   const s = statusColor(appt.status);
                   return (
-                    <div key={appt.id} style={{ ...card, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <div key={appt.id} style={{ ...card, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '8px' }}>
                       <div>
-                        <p style={{ fontWeight: '600', color: '#1e3a5f', margin: '0 0 4px' }}>{appt.patient_name}</p>
-                        <p style={{ fontSize: '13px', color: '#6b7280', margin: '0 0 4px' }}>{new Date(appt.appointment_date).toLocaleString()}</p>
+                        <p style={{ fontWeight: '600', color: darkMode ? '#e2e8f0' : '#1e3a5f', margin: '0 0 4px', wordBreak: 'break-word' }}>{appt.patient_name}</p>
+<p style={{ fontSize: '13px', color: '#6b7280', margin: '0 0 4px', wordBreak: 'break-word' }}>{new Date(appt.appointment_date).toLocaleString()}</p>
                         {appt.notes && <p style={{ fontSize: '13px', color: '#9ca3af', margin: 0 }}>{appt.notes}</p>}
                       </div>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
                         <span style={{ background: s.bg, color: s.color, fontSize: '12px', padding: '4px 12px', borderRadius: '20px', fontWeight: '600' }}>
                           {appt.status}
                         </span>
