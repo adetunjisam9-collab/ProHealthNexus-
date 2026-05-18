@@ -434,7 +434,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
     <select
       value={appointmentStatusFilter}
       onChange={e => setAppointmentStatusFilter(e.target.value)}
-      style={{ padding: '8px 12px', borderRadius: '10px', border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`, fontSize: '13px', outline: 'none', fontFamily: 'inherit', background: darkMode ? '#0f172a' : 'white', cursor: 'pointer' }}
+      style={{ padding: '8px 12px', borderRadius: '10px', border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`, fontSize: '13px', outline: 'none', fontFamily: 'inherit', background: darkMode ? '#1e293b' : 'white', color: darkMode ? '#e2e8f0' : '#374151', cursor: 'pointer' }}
     >
       <option value="all">All Status</option>
       <option value="pending">Pending</option>
