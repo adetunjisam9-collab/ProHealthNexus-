@@ -269,9 +269,9 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         {activeTab === 'users' && (
   <div className="fade-in">
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', gap: '12px' }}>
-  <h3 style={{ color: darkMode ? '#e2e8f0' : '#1e3a5f', fontWeight: '700', fontSize: '16px', margin: 0 }}>All Users</h3>
-  <div style={{ display: 'flex', gap: '8px' }}>
+       <div style={{ marginBottom: '1rem' }}>
+  <h3 style={{ color: darkMode ? '#e2e8f0' : '#1e3a5f', fontWeight: '700', fontSize: '16px', margin: '0 0 10px' }}>All Users</h3>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
     <div style={{ position: 'relative' }}>
       <i className="fa-solid fa-search" style={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: '#9ca3af', fontSize: '13px' }}></i>
       <input
@@ -279,11 +279,12 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         placeholder="Search users..."
         value={userSearch}
         onChange={e => setUserSearch(e.target.value)}
-        style={{ padding: '8px 12px 8px 32px', borderRadius: '10px', border: '1.5px solid #e5e7eb', fontSize: '13px', outline: 'none', fontFamily: 'inherit', width: '180px' }}
+        style={{ padding: '8px 12px 8px 32px', borderRadius: '10px', border: '1.5px solid #e5e7eb', fontSize: '13px', outline: 'none', fontFamily: 'inherit', width: 'min(180px, 45%)' }}
         onFocus={e => e.target.style.borderColor = '#2563eb'}
         onBlur={e => e.target.style.borderColor = '#e5e7eb'}
       />
     </div>
+    
     <select
       value={userRoleFilter}
       onChange={e => setUserRoleFilter(e.target.value)}
@@ -346,8 +347,9 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
         {/* Appointments Tab */}
         {activeTab === 'appointments' && (
   <div className="fade-in">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-  <h3 style={{ color: darkMode ? '#e2e8f0' : '#1e3a5f', fontWeight: '700', fontSize: '16px', margin: 0 }}>All Appointments</h3>
+            <div style={{ marginBottom: '1rem' }}>
+  <h3 style={{ color: darkMode ? '#e2e8f0' : '#1e3a5f', fontWeight: '700', fontSize: '16px', margin: '0 0 10px' }}>All Appointments</h3>
+  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '8px' }}>
   <select
     value={appointmentStatusFilter}
     onChange={e => setAppointmentStatusFilter(e.target.value)}
@@ -359,6 +361,7 @@ boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
     <option value="completed">Completed</option>
     <option value="cancelled">Cancelled</option>
   </select>
+</div>
 </div>
             {appointments.length === 0 ? (
               <div style={{ ...card, textAlign: 'center', padding: '3rem', color: '#9ca3af' }}>No appointments yet.</div>
