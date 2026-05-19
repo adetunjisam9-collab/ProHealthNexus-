@@ -117,20 +117,20 @@ boxShadow: darkMode ? '0 20px 60px rgba(0,0,0,0.4)' : '0 20px 60px rgba(0,0,0,0.
 
         <form onSubmit={handleSubmit}>
           {/* 6 OTP boxes */}
-          <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginBottom: '1.5rem' }}>
-            {otpDigits.map((digit, index) => (
-              <input
-                key={index}
-                ref={el => inputRefs.current[index] = el}
-                type="text"
-                inputMode="numeric"
-                maxLength={1}
-                value={digit}
-                onChange={e => handleChange(index, e.target.value)}
-                onKeyDown={e => handleKeyDown(index, e)}
-                onPaste={handlePaste}
-                style={{
-                  width: '48px', height: '56px', borderRadius: '12px',
+          <div style={{ display: 'flex', gap: '8px', justifyContent: 'center', marginBottom: '1.5rem', width: '100%' }}>
+  {otpDigits.map((digit, index) => (
+    <input
+      key={index}
+      ref={el => inputRefs.current[index] = el}
+      type="text"
+      inputMode="numeric"
+      maxLength={1}
+      value={digit}
+      onChange={e => handleChange(index, e.target.value)}
+      onKeyDown={e => handleKeyDown(index, e)}
+      onPaste={handlePaste}
+      style={{
+        width: 'calc(min(48px, (100vw - 6rem) / 6))', height: '52px', borderRadius: '12px',
                   border: `1.5px solid ${darkMode ? '#334155' : '#e5e7eb'}`,
                   fontSize: '22px', fontWeight: '700', textAlign: 'center',
                   outline: 'none', color: '#1e3a5f', fontFamily: 'inherit',
